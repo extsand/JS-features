@@ -1,0 +1,31 @@
+	let tab = document.querySelectorAll('.tab-links'),
+			info = document.querySelector('.parent-tab-links'),
+			tabContent = document.querySelectorAll('.tab-contents');
+
+	function hideTabContent(arg){
+		for(let i = arg; i < tabContent.length; i++ ){
+			tabContent[i].classList.remove('show');
+			tabContent[i].classList.add('hide');
+		}
+	}
+	function showTabContent(bArg){
+		if(tabContent[bArg].classList.contains('hide')){
+			tabContent[bArg].classList.remove('hide');
+			tabContent[bArg].classList.add('show');
+		}
+	}
+
+	hideTabContent(1);
+
+	info.addEventListener('click', function(event){
+		let target = event.target;
+		if(target && target.classList.contains('info-header-tab')){
+			for(let i = 0; i < tab.length; i++){
+				if (target == tab[i]){
+					hideTabContent(0);
+					showTabContent(i);
+					break;
+				}
+			}
+		}
+	});
