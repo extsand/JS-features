@@ -1,0 +1,58 @@
+let deadLine = '2019-06-30';
+
+	function getTimeRemaining(endtime) {
+		let t = Date.parse(endtime) - Date.parse(new Date());
+		let second = Math.floor((t / 1000) % 60);
+		let minute = Math.floor((t / 1000 / 60) % 60);
+		let hours = Math.floor((t/(1000*60*60)));
+		// let hours = Math.floor((t/1000/60/60) % 24);
+		let days = Math.floor((t/(1000*60*60*24)));
+		
+		return {
+			'total' : t,
+			'days'	: days,
+			'hours' : hours,
+			'minute' : minute,
+			'second' : second
+		};
+	}
+
+	console.log(getTimeRemaining(deadLine));
+
+	function setClock(id, endtime){
+		let timer = document.getElementById(id),
+				hours = timer.querySelector('.hours'),
+				minute = timer.querySelector('.minutes'),
+				second = timer.querySelector('.seconds'),
+				timerInterval = setInterval(updateClock, 1000);
+				
+
+		function updateClock() {
+			let t = getTimeRemaining(endtime);
+			if(t.second < 10){
+				second.textContent = '0' + t.second;
+			} else {
+				second.textContent = t.second;
+			}
+
+			if(t.minute < 10){
+				minute.textContent = '0' + t.minute;
+			} else {
+				minute.textContent = t.minute;
+			}	
+			//Important calc for 24 data content
+			if(t.hours%24 < 10){
+				hours.textContent = t.days + ' : ' + '0'+ t.hours%24;
+			}
+			else{
+				hours.textContent = t.days + ' : ' + t.hours%24;
+			}
+
+			if(t.total <= 0){
+				clearInterval(timerInterval);
+			}
+		}
+
+	}
+
+	setClock('timer', deadLine);
