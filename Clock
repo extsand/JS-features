@@ -1,0 +1,24 @@
+setInterval(setTime, 1000);
+	
+	let time = new Date;
+
+	function setTime(){
+		let time = new Date,
+				t = document.getElementById('timer'),
+				hours = t.querySelector('.hours'),
+				minutes = t.querySelector('.minutes'),
+				seconds = t.querySelector('.seconds');
+
+		hours.textContent = checkZero(time.getHours());
+		minutes.textContent = checkZero(time.getMinutes());
+		seconds.textContent = checkZero(time.getSeconds());
+		
+		function checkZero(arg){
+			if(arg<10){
+				return '0' + arg;
+			}
+			else{
+				return arg;
+			}
+		}
+	}
