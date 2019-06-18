@@ -1,4 +1,5 @@
-let btnMore = document.querySelector('.more'),
+// Modal 
+	let btnMore = document.querySelector('.more'),
 			overlay = document.querySelector('.overlay'),
 			closeOverlay = overlay.querySelector('.popup-close');
 
@@ -17,4 +18,15 @@ let btnMore = document.querySelector('.more'),
 			overlay.style.display = 'none';
 			document.body.style.overflow = '';
 		}
+	});
+
+// Modal for tabs
+
+	let btnDescr = document.querySelectorAll('.description-btn');
+	
+	btnDescr.forEach(function(item, index){
+		btnDescr[index].addEventListener('click', function(){
+			overlay.style.display = 'block';
+			document.body.style.overflow = 'hidden';
+		});
 	});
