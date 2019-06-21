@@ -1,0 +1,59 @@
+// ======== ES5 ========
+function Options(height, width, bg, fontSize, textAlign){
+	this.height = height;
+	this.width = width;
+	this.bg = bg;
+	this.fontSize = fontSize;
+	this.textAlign = textAlign;
+}
+
+Options.prototype.createDiv = function(string){
+	let div = document.createElement('div');
+			div.innerHTML = `<h1>${string}</h1>`;
+
+	div.style.display = 'block';
+	div.style.height = this.height + 'px';
+	div.style.width = this.width + 'px';
+	div.style.background = this.bg;
+	div.style.fontSize = this.fontSize + 'px';
+	div.style.textAlign = this.textAlign;
+
+	return div;
+};
+	
+let box = new Options(100,300,'red',20,'right'),
+		showBox = box.createDiv('Some text');
+
+let header = document.getElementsByTagName('header')[0];
+document.body.insertBefore(showBox, header);
+
+
+// ======== ES6 ========
+
+class Options {
+	constructor(height, width, bg, fontSize, textAlign) {
+		this.height = height;
+		this.width = width;
+		this.bg = bg;
+		this.fontSize = fontSize;
+		this.textAlign = textAlign;
+	}
+	createDiv(string) {
+		let div = document.createElement('div');
+		div.innerHTML = `<h1>${string}</h1>`;
+		div.style.display = 'block';
+		div.style.height = this.height + 'px';
+		div.style.width = this.width + 'px';
+		div.style.background = this.bg;
+		div.style.fontSize = this.fontSize + 'px';
+		div.style.textAlign = this.textAlign;
+		return div;
+	}
+}
+
+	
+let box = new Options(100,300,'red',20,'right'),
+		showBox = box.createDiv('Some text');
+
+let header = document.getElementsByTagName('header')[0];
+document.body.insertBefore(showBox, header);
