@@ -1,0 +1,31 @@
+
+let inpRub = document.getElementById('rub'),
+		inpUsd = document.getElementById('usd');
+
+inpRub.addEventListener('input', function(){
+	let request = new XMLHttpRequest();
+	// request.open(method, url, astnc, username, password);
+	request.open('GET', 'currentMoney.json');
+	request.setRequestHeader('Content-type','application/json; charset=utf-8');
+	request.send();
+
+
+	//status  -- code 404,202
+	//statusText -- description status
+	//responseText -- server text answer
+	//readyState -- 0 - unset
+	// 							1 - opened
+	// 							2 - headers-recieved
+	// 							3 - loading
+	// 							4 - done
+
+	request.addEventListener('readystatechange', function(){
+		if(request.readyState === 4 && request.status == 200){
+			let data = JSON.parse(request.response);
+			inpUsd.value = ((inpRub.value / data.usd)).toFixed(2);
+		} else {
+			inpUsd.value = 'Что-то пошло не так';
+		}
+	});
+
+});
