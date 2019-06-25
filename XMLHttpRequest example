@@ -29,3 +29,14 @@ inpRub.addEventListener('input', function(){
 	});
 
 });
+
+
+
+// FormData 
+Для отправки данных на сервер
+let formData = new FormData();
+formData.append('name', 'age');
+formData.append('number', 21);
+let request = new XMLHttpRequest();
+request.open('POST', 'currentMoney.json');
+request.send(formData);
