@@ -1,0 +1,36 @@
+	<!-- Developer Features -->
+	<div class="display-widtn">
+		show width
+	</div>
+	<style>
+		.display-widtn{
+			position: fixed;
+			top: 0;
+			left: 30px;
+			font-size: 30px;
+			font-weight: 900;
+			cursor: pointer;
+			user-select: none;
+			
+		}
+		.display-widtn-action{
+			opacity: 0.2;
+		}
+		
+	</style>
+	<script>
+		let displayInfo = document.getElementsByClassName('display-widtn')[0];
+		window.addEventListener('resize', (e)=>{
+			displayInfo.textContent = e.target.innerWidth +'px';
+		})
+		window.addEventListener('load', (e)=>{
+			displayInfo.textContent = window.innerWidth +'px';
+		})
+		displayInfo.addEventListener('click', (e)=>{
+			displayInfo.classList.toggle('display-widtn-action');
+
+		});
+
+
+	</script>
+	<!-- Developer Features END  -->
