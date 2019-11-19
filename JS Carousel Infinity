@@ -1,0 +1,133 @@
+!<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>JS Carousel Infinity</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="">
+	</head>
+	<body>
+<!-- for size control/@media you must change viewport size -->
+<!-- Carousel body -->
+		<div class="client-slider-container">
+			<div class="client-slide-viewport">
+				<div class="client-slide-frame">
+						<div class="item-box">1</div>
+						<div class="item-box">2</div>
+						<div class="item-box">3</div>
+						<div class="item-box">4</div>
+						<div class="item-box">5</div>
+				</div>
+			</div>
+			<div class="client-slide-control">
+				<span>&laquo;</span>
+				<span>&raquo;</span>
+			</div>
+		</div>
+<!-- Style for carousel -->
+		<style>
+			/* SASS Code */
+		.client-slide-control
+			// outline: 1px solid blue
+			font-size: 3rem
+			position: absolute
+			top: 43%
+			width: 100%
+			display: flex
+			justify-content: space-between
+			cursor: pointer
+			span
+				outline: 1px solid blue
+				display: block
+				height: 10rem
+
+
+		.client-slider-container
+			outline: 1px solid red
+			display: block
+			width: 100rem
+			height: 30rem
+			position: relative
+
+
+		.client-slide-viewport
+			outline: 1px solid green
+			display: block
+			width: 90rem
+			left: 5%
+			height: 100%
+			position: relative
+			overflow: hidden
+
+		.client-slide-frame
+			display: flex
+			width: 150rem
+			transition: all 0.5s
+			position: relative
+			left: -30rem
+
+
+		.item-box
+			display: block
+			// position: relative
+			background-color: #010101
+			border: 2px solid gray
+			width: 30rem
+			height: 30rem
+			font-size: 5rem
+			color: #ffffff
+			text-align: center
+			line-height: 5.5
+		/* SASS Code END */
+		</style>
+		<script>
+			
+			let sliderFrame = document.getElementsByClassName('client-slide-frame')[0],
+	 		slideControl = document.querySelectorAll('.client-slide-control span');
+
+			console.log(slideControl);
+			let direction;
+			slideControl.forEach(function(item, index,  arr){
+				slideControl[index].addEventListener('click', function(){
+					if(index == 1){
+						console.clear();
+						console.log('right');
+						sliderFrame.setAttribute('style', 'transform: translate(20%)');
+						direction = 1;
+					}
+					else if (index == 0){
+						console.clear();
+						console.log('left');
+						// sliderFrame.style.transform = 'translateX(30rem)';
+						sliderFrame.setAttribute('style', 'transform: translate(-20%)');
+						direction = 0;
+					}
+				});
+			});
+
+			sliderFrame.addEventListener('transitionend', function(e){
+				console.log('Transition END');
+				if(direction == 0){
+					sliderFrame.appendChild(sliderFrame.firstElementChild);
+				}
+				else if(direction == 1){
+					sliderFrame.prepend(sliderFrame.lastElementChild);
+				}
+				sliderFrame.style.transition = 'none';
+				sliderFrame.style.transform = 'translate(0)';
+
+				setTimeout(function(){
+					sliderFrame.style.transition = 'all 0.5s';
+				});
+			});
+
+		</script>
+		
+		<script src="" async defer></script>
+	</body>
+</html>
