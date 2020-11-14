@@ -1,0 +1,13 @@
+//How to set delay for element of array
+
+const users = ['Peter', 'Coco', 'John']
+
+let i = 0;
+function f() {
+    console.log(users[i])
+    i++
+    if (i < users.length){
+        setTimeout( f, 1000)
+    }
+}
+f()
