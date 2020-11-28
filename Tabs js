@@ -1,0 +1,86 @@
+/*HTML ============================================*/
+
+<div class="content_tabs">
+  <div class="content__tabs__btn">
+    <button data-tab-btn="flight" class="active-tab-btn">Flight</button>
+    <button data-tab-btn="hotel">Hotel</button>
+    <button data-tab-btn="car">Rent a Car</button>
+  </div>
+  <div class="content__tabs__tab active-tab" data-tab-content="flight">
+    <h2>It's Flight</h2>
+  </div>
+  <div class="content__tabs__tab" data-tab-content="hotel">
+    <h2>It's Hotel</h2>
+  </div>
+  <div class="content__tabs__tab" data-tab-content="car">
+    <h2>It's car</h2>
+  </div>
+</div>
+
+
+/*SASS ============================================*/
+.content_tabs
+	width: 100%
+	h2
+		margin: 0
+		padding: 0			
+.content__tabs__btn
+	button
+		width: 25rem
+		height: 5rem
+		font-size: 2rem
+		font-weight: 800
+		border: none
+		background-color: rgba($color_button, 0.7)
+		outline: none
+		&:hover
+			background-color: #fff
+
+.content__tabs__tab
+	display: none
+	width: 100%
+	min-height: 7vh 
+	background-color: #fff	
+.active-tab 
+	display: block
+.content__tabs__btn 
+		button.active-tab-btn
+			background-color: #fff
+		
+
+
+/*JS ============================================*/
+          
+const btnTabs = document.querySelectorAll('[data-tab-btn]')
+const tabs = document.querySelectorAll('[data-tab-content]')
+console.log(tabs)
+console.log(btnTabs)
+
+function changeTab(e){
+	e.preventDefault()
+
+	let i
+	for (i = 0; i < tabs.length; i++) {
+		tabs[i].classList.remove('active-tab')
+	}
+	for (i = 0; i < btnTabs.length; i++){
+		btnTabs[i].classList.remove('active-tab-btn')
+	}
+
+	e.currentTarget.classList += 'active-tab-btn'
+	tabs.forEach( tab => {
+		if (tab.dataset.tabContent === e.currentTarget.dataset.tabBtn) {
+			tab.classList.add('active-tab')
+		}
+	})
+	
+}
+
+btnTabs.forEach( button => {
+	button.addEventListener('click', changeTab)
+})
+      
+      
+      
+      
+      
